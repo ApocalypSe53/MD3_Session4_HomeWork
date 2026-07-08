@@ -9,19 +9,22 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "instructors")
+@Table(name = "students")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Instructor {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 100, nullable = false)
-    private String name;
+
     @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false, unique = true)
     private String email;
-    @OneToMany(mappedBy = "instructor")
-    private List<Course> courses;
+
+    @OneToMany(mappedBy = "student")
+    private List<StudentEnrollment> enrollments;
 }
